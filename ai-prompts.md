@@ -8,7 +8,7 @@ This log documents all the prompts and answers used in ibm granite models for th
 **Goal:** Create a robust, modular control system for the Corkscrew track.
 
 ### Prompt
-```
+```text
 @snakeoil3_jm2.py @torcs_jm_par.py Act as an expert in autonomous vehicle control and TORCS simulator architecture. I am developing a high-performance agent for the Corkscrew track.
 
 Analyze the provided snakeoil3_jm2.py (for sensor/action interface) and torcs_jm_par.py (current control logic).
@@ -98,7 +98,7 @@ This revised drive() function provides a more sophisticated control strategy sui
 Goal: Eliminate zig-zagging in straights and fix premature crashing in corners.
 
 ### Prompt
-```
+```text
 The current drive(c) function has two major issues:
 In straight sections, the car oscillates (zig-zags) excessively. This suggests that the proportional steering gain steer_kp = 30 is too aggressive or that we need a damping term. Please adjust the PD controller to be more stable in straights while maintaining responsiveness.
 The car crashes in the first corner because the braking system is too reactive (it only brakes at angle > 0.9). Please implement a predictive braking logic: if the 'track' sensors indicate a sharp decrease in distance ahead (implying a turn), apply partial braking earlier to ensure corner entry at a stable speed.
@@ -176,7 +176,7 @@ These modifications aim to improve the agent's performance in both straight sect
 Goal: Anticipate corners based on track geometry rather than just steering angle.
 
 ### Prompt
-```
+```text
 The current drive(c) function has successfully eliminated the zig-zag oscillations in the straights, and the steering control is now stable. However, the car still crashes at the entrance of the first corner because it enters at too high a velocity.
 
 The current braking logic is too reactive, relying on steering angle thresholds rather than anticipating the track geometry. Please implement a predictive 'look-ahead' braking strategy by analyzing the S['track'] sensor array to anticipate the corner before the car reaches the apex.
