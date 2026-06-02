@@ -2,7 +2,7 @@
 
 **Model used:** `ibm-granite-3.2-8b-instruct`
 
-This log documents the iterative development of an autonomous racing agent for the TORCS simulator, focusing on steering, throttle, and braking logic refinement.
+This log documents all the prompts and answers used in ibm granite models for this proyect.
 
 ## 1. Initial Agent Creation
 **Goal:** Create a robust, modular control system for the Corkscrew track.
