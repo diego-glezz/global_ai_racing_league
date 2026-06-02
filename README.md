@@ -10,4 +10,3 @@ This repository contains the source code for an autonomous Artificial Intelligen
 
 ## 📖 Development Diary
 The engineering process, including the resolution of UDP latency bottlenecks and the optimization of mathematical reward functions, is documented in a series of Dev.to articles:
-* 
