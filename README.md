@@ -4,9 +4,9 @@ This repository contains the source code for an autonomous Artificial Intelligen
 
 ## Technology Stack
 * **Language:** Python 3
-* **AI Algorithm:** Soft Actor-Critic (SAC) via Stable Baselines 3
+* **AI Algorithm:**
 * **Simulator:** TORCS (The Open Racing Car Simulator)
 * **Code Assistant:** IBM Granite Models
 
-## 📖 Development Diary
-The engineering process, including the resolution of UDP latency bottlenecks and the optimization of mathematical reward functions, is documented in a series of Dev.to articles:
+## Development Diary
+The engineering process is documented in a series of Dev.to articles: [Dev.to series](https://dev.to/dglezz/series/40449).
