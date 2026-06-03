@@ -115,7 +115,7 @@ def drive(c):
     # TUNED PD STEERING CONTROL WITH DAMPING
     steer_kp = 15  # Proportional Gain for steering based on track angle (reduced from 30)
     steer_kd = 0.15  # Derivative Gain for centering based on track position (adjusted to be less aggressive)
-    R['steer'] = steer_kp * S['angle'] / math.pi - steer_kd * S['trackPos'] - 0.05 * S['steer']  # Added damping term
+    R['steer'] = steer_kp * S['angle'] / math.pi - steer_kd * S['trackPos'] - 0.05 * R['steer']  # Added damping term
 
     # PREDICTIVE BRAKING LOGIC
     track_sensors = S['track']
@@ -163,7 +163,7 @@ Tuned PD Steering with Damping:
 
 steer_kp was reduced from 30 to 15 to decrease the aggressiveness of the steering control, addressing the zig-zagging in straight sections.
 The derivative term (steer_kd) was adjusted to a lower value (0.15) for smoother centering.
-A damping term -0.05 * S['steer'] was added to counteract oscillations by dampening large changes in steering angle, promoting stability.
+A damping term -0.05 * R['steer'] was added to counteract oscillations by dampening large changes in steering angle, promoting stability.
 Predictive Braking Logic:
 
 The braking system now checks the track sensors for a significant decrease in distance ahead (indicating an upcoming turn). If such a condition is met (track_sensors[-1] - track_sensors[0] < -20), partial brakes are applied. This allows for smoother corner entries by reducing speed before the sharp turn, enhancing stability and preventing crashes.
@@ -198,7 +198,7 @@ def drive(c):
     # TUNED PD STEERING CONTROL WITH DAMPING
     steer_kp = 15  # Proportional Gain for steering based on track angle
     steer_kd = 0.15  # Derivative Gain for centering based on track position
-    R['steer'] = steer_kp * S['angle'] / math.pi - steer_kd * S['trackPos'] - 0.05 * S['steer']
+    R['steer'] = steer_kp * S['angle'] / math.pi - steer_kd * S['trackPos'] - 0.05 * R['steer']
 
     # PREDICTIVE LOOK-AHEAD BRAKING LOGIC
     lookahead_sensors = S['track'][-5:]  # Use last five sensors to anticipate track curvature change
