@@ -4,8 +4,9 @@
 
 This log documents all the prompts and answers used in ibm granite models for this proyect.
 
-## 1. Initial Agent Creation
-**Goal:** Create a robust, modular control system for the Corkscrew track.
+## 1. Initial Model Creation
+
+### **Goal:** Create a robust, modular control system for the Corkscrew track.
 
 ### Prompt
 ```text
@@ -93,9 +94,9 @@ Smart Shifting: The gear shifting logic now looks at S['speedX'], the current sp
 
 This revised drive() function provides a more sophisticated control strategy suitable for high-performance autonomous driving, taking into account the demands of the TORCS simulator and the specifics of competitive racing scenarios.
 
+---
 
-## 2. Fixing Oscillations and Reactive Braking
-Goal: Eliminate zig-zagging in straights and fix premature crashing in corners.
+### **Goal:** Eliminate zig-zagging in straights and fix premature crashing in corners.
 
 ### Prompt
 ```text
@@ -171,9 +172,9 @@ Predictive Braking Logic:
 The braking system now checks the track sensors for a significant decrease in distance ahead (indicating an upcoming turn). If such a condition is met (track_sensors[-1] - track_sensors[0] < -20), partial brakes are applied. This allows for smoother corner entries by reducing speed before the sharp turn, enhancing stability and preventing crashes.
 These modifications aim to improve the agent's performance in both straight sections (reducing oscillations) and sharp turns (applying early braking for safer entry). The adjustments balance responsiveness with stability, crucial for high-speed tracks like Corkscrew.
 
+---
 
-## 3. Implementing Predictive "Look-Ahead" Braking
-Goal: Anticipate corners based on track geometry rather than just steering angle.
+### **Goal:** Anticipate corners based on track geometry rather than just steering angle.
 
 ### Prompt
 ```text
@@ -253,3 +254,7 @@ Sharp Turn Detection: The code checks for a significant decrease in track distan
 Scaling Braking Pressure: If a potentially sharp turn is detected, R['brake'] is set based on how sharp the turn is (distance_reduction). This scaling ensures gradual braking application as the corner approaches, allowing for the maximum possible entry speed without crashing. The value of 0.6 scales down the full braking force to a moderate level suitable for gradual deceleration.
 
 This predictive logic uses track sensor data proactively to manage speed, avoiding crashes by initiating controlled deceleration before reaching sharp turns, thus allowing higher entry speeds while maintaining safety and control.
+
+---
+
+
