@@ -254,4 +254,47 @@ This predictive logic uses track sensor data proactively to manage speed, avoidi
 
 ---
 
+### **Goal:** Create a modular architecture that divides tasks(steering, throttle, gear, etc).
+
+### Prompt:
+```text
+Act as an expert in autonomous vehicle control and TORCS simulator architecture.
+
+I want to refactor our current drive logic into a clean, modular architecture. 
+
+Please note that the car we are controlling is a Formula 1 car. You should use your knowledge to determine and apply realistic F1 parameters (e.g., weight, engine characteristics, and high RPM shifting logic—likely around 15,000+ RPM) where necessary in the logic.
+
+Include this setting in the code:
+
+ENABLE_TRACTION_CONTROL = True  # Toggle traction control system
+
+STRICT Windows TORCS troubleshooting constraints to follow:
+
+- Output ranges MUST be strictly clipped: steer ∈ [-1.0, 1.0], accel/brake ∈ [0.0, 1.0].
+
+- Gear MUST always be sent as an integer.
+
+- Launch control must be included to overcome static friction.
+
+Please generate a Python script containing the following modular helper functions and the main control loop:
+
+1. `calculate_steering(S)`: Implement a Proportional-Derivative (PD) steering controller. Use track angle and track position to compute the steering value, applying appropriate gains for stable cornering.
+
+2. `calculate_throttle(S, R)`: Implement a dynamic acceleration curve aiming to drive as fast as safely possible. The logic should apply maximum throttle on straightaways but dynamically scale down the acceleration based on how sharp the current steering angle is (i.e., ease off the gas when turning to avoid flying off the track). CRITICAL: You must include a launch control mechanism (e.g., `if S['speedX'] < 10: accel += 1 / (S['speedX'] + 0.1)`) to ensure the car can start from a standstill. 
+
+3. `apply_brakes(S)`: Implement a basic reactive braking system that applies partial braking if the car's angle relative to the track axis exceeds a critical threshold. 
+
+4. `shift_gears(S)`: Implement a smart shifting logic tailored for an F1 engine.
+
+    - Read the current gear from `int(S['gear'])`.
+
+    - CRITICAL RULE: If `S['speedX'] < 1.0`, the gear must be 1.
+
+    - Shift up and down based on optimal RPM bands for an F1 car. Limit the maximum gear to 6.
+
+5. `traction_control(S, accel)`: If `ENABLE_TRACTION_CONTROL` is true, monitor wheel spin. If the rear wheels are spinning significantly faster than the front wheels (e.g., a difference > 2 rad/s), dynamically reduce the acceleration command to regain traction.
+```
+
+### Response:
+
 
