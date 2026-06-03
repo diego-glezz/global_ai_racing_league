@@ -29,9 +29,6 @@ Here's a revised drive() function for
 torcs_jm_par.py
  that incorporates PD Steering, Adaptive Braking Logic, Dynamic Throttle, and Smart Shifting:
 
-Python
-
-
 ```python
 #================= MAIN DRIVE FUNCTION =================
 def drive(c):
